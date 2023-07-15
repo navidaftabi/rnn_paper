@@ -1,5 +1,4 @@
 # Ignore .mat files
-data/
 **.mat
 
 # Byte-compiled / optimized / DLL files
