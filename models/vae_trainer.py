@@ -24,7 +24,7 @@ class VAETrainer:
                  lr: float = 1e-1,
                  lr_scheduler: bool = False,
                  es_patience: int = 0,
-                 seed: int = 0):
+                 seed: int = 0) -> None:
         self.set_seed(seed)
         self.criterion = nn.MSELoss()
         self.es = EarlyStopping(patience=es_patience,

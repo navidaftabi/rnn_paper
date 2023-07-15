@@ -33,7 +33,7 @@ class Decoder(nn.Module):
     
 class AE(nn.Module):
     def __init__(self, latent_dims) -> None:
-        super(AE, self).__init__(latent_dims)
+        super(AE, self).__init__()
         self.encoder  = Encoder(latent_dims)
         self.decoder = Decoder(latent_dims)
 

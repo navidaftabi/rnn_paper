@@ -76,7 +76,7 @@ class AETrainer:
             val_mse.append(_val_mse)
             print(f'Epoch {epoch+1}/{epochs}: '
                   f'[MSE: {mse[-1]:.4f}], '
-                  f'[Val_MSE: {_val_mse:.2f}], ', flush=True)
+                  f'[Val_MSE: {_val_mse:.4f}], ', flush=True)
             if self.scheduler:
                 self.scheduler.step(_val_mse)
             self.es(_val_mse, self.ae)

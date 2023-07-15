@@ -93,7 +93,7 @@ class RNNTrainer:
             val_mse.append(val_loss)
             print(f'Epoch {epoch+1}/{epochs}: '
                   f'[MSE: {mse[-1]:.4f}], '
-                  f'[Val_MSE: {val_loss:.2f}], ', flush=True)
+                  f'[Val_MSE: {val_loss:.4f}], ', flush=True)
             if self.scheduler:
                 self.scheduler.step(val_loss)
             self.es(val_loss, self.rnn)
