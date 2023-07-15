@@ -52,7 +52,7 @@ class Decoder(nn.Module):
         x = self.linear1(x)
         x = F.relu(self.norm(x))
         x = self.linear2(x)
-        x = F.tanh(x)
+        # x = F.tanh(x)
         return x
 
 class VAE(nn.Module):
