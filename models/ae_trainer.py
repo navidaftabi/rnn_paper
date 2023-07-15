@@ -16,10 +16,13 @@ class AETrainer:
                  lr: float = 1e-1,
                  lr_scheduler: bool = False,
                  es_patience: int = 0,
+                 checkpoint_name: str = 'ae.pt',
                  seed: int = 0) -> None:
+        self.set_seed(seed)
+        self.checkpoint_name = checkpoint_name
         self.criterion = nn.MSELoss()
         self.es = EarlyStopping(patience=es_patience,
-                                path=os.path.join(CHECKPOINT_PATH, 'ae.pt'), 
+                                path=os.path.join(CHECKPOINT_PATH, checkpoint_name), 
                                 verbose=True)
         self.ae = AE(latent_dim)
         self.optimizer = torch.optim.Adam(self.ae.parameters(), lr=lr,
@@ -83,5 +86,5 @@ class AETrainer:
             if self.es.early_stop:
                 print("Early stopping!")
                 break
-        self.ae.load_state_dict(torch.load(os.path.join(CHECKPOINT_PATH, 'ae.pt')))
+        self.ae.load_state_dict(torch.load(os.path.join(CHECKPOINT_PATH, self.checkpoint_name)))
         return self.ae, mse, val_mse
