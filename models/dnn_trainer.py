@@ -17,11 +17,13 @@ class DNNTrainer:
                  lr: float = 1e-1,
                  lr_scheduler: bool = False,
                  es_patience: int = 0,
+                 checkpoint_name: str = 'dnn.pt',
                  seed: int = 0):
         self.set_seed(seed)
         self.criterion = nn.CrossEntropyLoss()
+        self.checkpoint_name = checkpoint_name
         self.es = EarlyStopping(patience=es_patience,
-                                path=os.path.join(CHECKPOINT_PATH, 'dnn.pt'), 
+                                path=os.path.join(CHECKPOINT_PATH, checkpoint_name), 
                                 verbose=True)
         self.dnn = DNN()
         self.optimizer = torch.optim.RMSprop(self.dnn.parameters(), lr=lr, weight_decay=5e-5, momentum=5e-3)
@@ -102,5 +104,5 @@ class DNNTrainer:
             if self.es.early_stop:
                 print("Early stopping!")
                 break
-        self.dnn.load_state_dict(torch.load(os.path.join(CHECKPOINT_PATH, 'dnn.pt')))
+        self.dnn.load_state_dict(torch.load(os.path.join(CHECKPOINT_PATH, self.checkpoint_name)))
         return self.dnn, loss, val_loss, acc, val_acc

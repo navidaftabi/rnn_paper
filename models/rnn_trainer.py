@@ -27,11 +27,13 @@ class RNNTrainer:
                  lr: float = 1e-1,
                  lr_scheduler: bool = False,
                  es_patience: int = 0,
+                 checkpoint_name: str = 'rnn.pt',
                  seed: int = 0):
         self.set_seed(seed)
+        self.checkpoint_name = checkpoint_name
         self.criterion = nn.MSELoss()
         self.es = EarlyStopping(patience=es_patience,
-                                path=os.path.join(CHECKPOINT_PATH, 'rnn.pt'), 
+                                path=os.path.join(CHECKPOINT_PATH, checkpoint_name), 
                                 verbose=True)
         self.rnn = RNN(input_dims=input_dim,
                        outputdims=outputdims,
@@ -100,5 +102,5 @@ class RNNTrainer:
             if self.es.early_stop:
                 print("Early stopping!")
                 break
-        self.rnn.load_state_dict(torch.load(os.path.join(CHECKPOINT_PATH, 'rnn.pt')))
+        self.rnn.load_state_dict(torch.load(os.path.join(CHECKPOINT_PATH, self.checkpoint_name)))
         return self.rnn, mse, val_mse
