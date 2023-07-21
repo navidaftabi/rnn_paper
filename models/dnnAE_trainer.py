@@ -14,6 +14,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 class DNNTrainer:
     def __init__(self,
+                 no_residuals: int = 1,
                  lr: float = 1e-1,
                  lr_scheduler: bool = False,
                  es_patience: int = 0,
@@ -28,7 +29,7 @@ class DNNTrainer:
         self.es = EarlyStopping(patience=es_patience,
                                 path=os.path.join(CHECKPOINT_PATH, checkpoint_name), 
                                 verbose=True)
-        self.dnn = DNN()
+        self.dnn = DNN(no_residuals=no_residuals)
         self.optimizer = torch.optim.RMSprop(self.dnn.parameters(), lr=lr, weight_decay=5e-5, momentum=5e-3)
         if lr_scheduler:
             self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(self.optimizer,
