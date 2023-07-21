@@ -29,7 +29,10 @@ class RNNTrainer:
                  es_patience: int = 0,
                  checkpoint_name: str = 'rnn.pt',
                  seed: int = 0):
-        self.set_seed(seed)
+        torch.manual_seed(seed)
+        # torch.cuda.manual_seed(seed)
+        # torch.cuda.manual_seed_all(seed)
+        # torch.backends.cudnn.deterministic = True
         self.checkpoint_name = checkpoint_name
         self.criterion = nn.MSELoss()
         self.es = EarlyStopping(patience=es_patience,
@@ -47,15 +50,6 @@ class RNNTrainer:
                                                                         factor=0.2,
                                                                         patience=6,
                                                                         min_lr=5e-5)
-    
-    @staticmethod
-    def set_seed(seed):
-        torch.manual_seed(seed)
-        # torch.cuda.manual_seed(seed)
-        # torch.cuda.manual_seed_all(seed)
-        # torch.backends.cudnn.deterministic = True
-        print("Device: ", device)
-
     def forward(self, x, y):
         y_hat = self.rnn(x)
         return self.criterion(y_hat, y)

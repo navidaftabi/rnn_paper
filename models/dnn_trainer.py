@@ -19,7 +19,10 @@ class DNNTrainer:
                  es_patience: int = 0,
                  checkpoint_name: str = 'dnn.pt',
                  seed: int = 0):
-        self.set_seed(seed)
+        torch.manual_seed(seed)
+        # torch.cuda.manual_seed(seed)
+        # torch.cuda.manual_seed_all(seed)
+        # torch.backends.cudnn.deterministic = True
         self.criterion = nn.CrossEntropyLoss()
         self.checkpoint_name = checkpoint_name
         self.es = EarlyStopping(patience=es_patience,
@@ -33,15 +36,6 @@ class DNNTrainer:
                                                                         factor=0.2,
                                                                         patience=6,
                                                                         min_lr=5e-5)
-    
-    @staticmethod
-    def set_seed(seed):
-        torch.manual_seed(seed)
-        # torch.cuda.manual_seed(seed)
-        # torch.cuda.manual_seed_all(seed)
-        # torch.backends.cudnn.deterministic = True
-        print("Device: ", device)
-
     @staticmethod
     def accuracy(y_hat, y):
         return ((torch.argmax(y_hat, dim=1) == torch.argmax(y, dim=1)).float().sum()) / len(y)

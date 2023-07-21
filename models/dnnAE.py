@@ -35,5 +35,5 @@ class DNN(nn.Module):
         x = torch.flatten(x, start_dim=1)
         x = F.relu(self.linear4(x))
         # last layer
-        x = F.softmax(self.linear6(x), dim=2)
+        x = F.softmax(self.linear5(x), dim=1)
         return x
