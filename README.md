@@ -8,4 +8,4 @@ Figure below denotes the proposed architecture used for online inference, after 
 
 <p align=center>
     <img src="../main/design/fig.png" width="600"/>
-<\p>
+</p>
