@@ -6,7 +6,9 @@ Figure below denotes the proposed architecture used for online inference, after 
 
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/navidaftabi/rnn_paper/main/design/fig.pdf">
-  <img src="https://github.com/navidaftabi/rnn_paper/main/design/fig.pdf">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/navidaftabi/rnn_paper/blob/main/design/fig.pdf">
+  <img src="https://github.com/navidaftabi/rnn_paper/blob/main/design/fig.pdf">
 </picture>
+
+
 https://github.com/navidaftabi/rnn_paper/main/design/fig.pdf
