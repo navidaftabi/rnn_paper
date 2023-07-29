@@ -5,4 +5,6 @@ This repository is the implementation of the paper ``**Securing Power Systems: A
 Figure below denotes the proposed architecture used for online inference, after offline training of the variational autoencoder (VAE), the recurrent neural network (RNN), and the dense layer for classification.
 
 
-[fig.pdf](https://github.com/navidaftabi/rnn_paper/design/fig.pdf)
+<p align="center">
+  <img src="https://github.com/navidaftabi/rnn_paper/blob/main/design/fig.pdf" width="350">
+</p>
