@@ -1,4 +1,4 @@
-# rnn_paper
+# VAE-RPICR
 
 This repository is the implementation of the paper ``**[A Variational Autoencoder Framework for Robust, Physics-Informed Cyberattack Recognition in Industrial Cyber-Physical Systems](https://arxiv.org/abs/2310.06948)**".
 
